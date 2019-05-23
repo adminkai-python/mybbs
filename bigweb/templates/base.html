@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../static/css/base.css">
+    {% block head %}{% endblock %}
+
+</head>
+<body background="../static/image/16.png" style="background-repeat:repeat;background-attachment:fixed;">
+<div class="container-fluid">
+    <div class="top">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{ url_for("main.index") }}" style="color: black;font-size: xx-large;">&nbsp;&nbsp;&nbsp;&nbsp;F-D-T</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+
+                <li><a href="#" style="color: #f2f2f5;">Flask</a></li>
+                <li><a href="#" style="color: #f2f2f5;">Django</a></li>
+                <li><a href="#" style="color: #f2f2f5;">Tornado</a></li>
+
+              </ul>
+              <form class="navbar-form navbar-left">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button>
+              </form>
+              <ul class="nav navbar-nav navbar-right">
+                  {% if current_user.is_authenticated %}
+                      <li><a href="{{ url_for("user.post_edit") }}" style="color: #f2f2f5;">发帖</a></li>
+                      <li><a href="{{ url_for("user.set_portrait") }}" style="color: #f2f2f5;">{{ current_user.username }}</a></li>
+                      <li><a href="{{ url_for("auth.logout") }}" style="color: #f2f2f5;">注销</a></li>
+                  {% else %}
+                     <li><a href="{{ url_for("auth.login") }}" style="color: #f2f2f5;">登录</a></li>
+                     <li><a href="{{ url_for("auth.register") }}" style="color: #f2f2f5;">注册</a></li>
+                  {% endif %}
+
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+    </div>
+    <div class="main">
+        <div class="main-left"></div>
+
+        <div class="main-betwen">
+            <div class="main-main">
+
+                {% for message in get_flashed_messages() %}
+                     <div class="alert alert-warning alert-dismissible" role="alert">
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                          {{ message }}
+                     </div>
+                {% endfor %}
+
+                {% block body %}{% endblock %}
+            </div>
+            <div class="main-two">
+                {% block bodytwo %}{% endblock %}
+            </div>
+        </div>
+
+        <div class="main-right"></div>
+
+    </div>
+    <div class="foot"></div>
+</div>
+
+
+{% block script %}
+    {{ moment.locale(auto_detect=True) }}
+    {{ moment.include_moment() }}
+    {{ moment.include_jquery() }}
+{% endblock %}
+
+</body>
+</html>

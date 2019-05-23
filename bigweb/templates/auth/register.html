@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% from "macros.html" import field_form %}
+
+{% block head %}
+
+{% endblock %}
+
+
+
+{% block body %}
+
+    <div class="register">
+    <h3>欢迎加入FDT大家庭</h3>
+        <p>在这里你可以问任何关于Flask，Django和Tornado的问题，论坛里的大佬都很乐意帮助你。</p>
+      <form class="register-input" method="post">
+          {{ register_form.csrf_token }}
+          <div class="form-group">{{ field_form(register_form.email,class="form-control" ,id="email") }}</div>
+          <div class="form-group">{{ field_form(register_form.username,class="form-control", id="usr") }}</div>
+          <div class="form-group">{{ field_form(register_form.password,class="form-control", id="pwd") }}</div>
+          <div class="form-group">{{ field_form(register_form.password2,class="form-control", id="pwd") }}</div>
+          <button type="submit" class="btn btn-block btn-success btn-lg">注册</button>
+
+
+
+
+
+      </form>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% from "macros.html" import field_form %}
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block body %}
+    <div class="login">
+        <h3>一，二，三，加油！</h3>
+        <form class="form-horizontal login-input" method="post">
+            {{ login_form.csrf_token }}
+            <div class="form-group">{{ field_form(login_form.email,class="form-control" ,id="inputEmail3" ,placeholder="Email") }}</div>
+            <div class="form-group">{{ field_form(login_form.password,class="form-control" ,id="inputPassword3" ,placeholder="Password") }}</div>
+            <div class="form-group">{{ field_form(login_form.remember) }}</div>
+        <div class="login-add">
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <button type="submit" class="btn btn-default">登录</button>
+                </div>
+            </div>
+            <p class="small"><a href="{{ url_for("auth.forget_password") }}">忘记密码</a></p>
+            <p class="small"><a href="{{ url_for("auth.register") }}">注册账号</a></p>
+        </div>
+
+        </form>
+
+
+    </div>
+
+{% endblock %}

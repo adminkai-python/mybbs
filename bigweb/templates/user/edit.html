@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% from "macros.html" import field_form %}
+
+{% block head %}
+
+{% endblock %}
+
+
+
+{% block body %}
+
+    <form  method="post" class="post-edit">
+{#        {{ post_form.csrf_token }}#}
+        {{ field_form(post_form.title,class="form-control title-edit") }}
+        {{ field_form(post_form.article,class="article-edit") }}
+        <button type="submit" class="btn btn-block btn-success btn-lg">发布</button>
+
+    </form>
+
+{% endblock %}
+
+
+
+
+
+{% block script %}
+{#    ckeditor编辑器核心配置#}
+    {{ ckeditor.load(pkg_type="standard") }}
+
+{#    ckeditor编辑器附加配置#}
+    <script type="text/javascript">
+
+        CKEDITOR.replace( "article", {
+            height: "500px",
+            width: "600px",
+            imageUploadUrl: "/upload",
+            filebrowserUploadUrl: "/upload",
+            filebrowserBrowseUrl: "/upload",
+            extraPlugins: "filebrowser"
+        });
+
+    </script>
+
+{#    ckeditor的代码高亮插件配置#}
+    {{ ckeditor.load_code_theme() }}
+
+{% endblock %}

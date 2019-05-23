@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% from "macros.html" import field_form %}
+
+{% block head %}
+    <link rel="stylesheet" href="../static/css/post.css">
+{% endblock %}
+
+
+{% block body %}
+    <div class="post">
+        <div class="post-top">
+            <div class="post-left"><img src="../static/image/iii.png" alt=""></div>
+            <div class="post-body">
+                <a href="#" class="name">Wallace🔥👑🐅</a>
+                <small class="post-body-time">4月23日&nbsp;19:23&nbsp;来自&nbsp;FDT&nbsp;www.baidu.com</small>
+                <p>{{ post.article|safe }}</p>
+            </div>
+        </div>
+        <div class="post-footer">
+            <a href="#">⭐&nbsp;️收藏</a>
+            <span>|</span>
+            <a href="#">🤚&nbsp;分享(4)</a>
+            <span>|</span>
+            <a href="#">👄&nbsp;评论(26)</a>
+            <span>|</span>
+            <div class="dianzhan">👍&nbsp;点赞(78)</div>
+        </div>
+    </div>
+
+    <div class="comment">
+
+        <div class="comment-input">
+            <div class="comment--input-image"><img src="../static/image/iii.png" alt=""></div>
+            <form class="comment-input-body">
+{#                {{ comment_form.csrf_token }}#}
+{#                {{ field_form(comment_form.comment,cols="80", rows="2",class="text-input") }}#}
+                <textarea name="text" id="" cols="80" rows="2" class="text-input"></textarea>
+                <div class="comment-input-btn">
+                    <a href="#">顺便转发</a>
+                    <button type="button" class="btn btn-success btn-xs comment-btn" onclick="commentForm()">评论</button>
+                </div>
+            </form>
+        </div>
+
+        {% if post.comments %}
+            {% for comment in post.comments %}
+                <div class="comment-list">
+                    <div class="comment-list-image"><img src="{{ url_for("user.get_file",filename=comment.post.user.portrait) }}" alt=""></div>
+                    <div class="comment-list-body">
+                        <div class="comment-list-top">
+                            <p class="comment-p"><a href="#">{{ comment.user.username }}👌🌹：</a>{{ comment.comment }}</p>
+                        </div>
+                        <div class="comment-list-add">
+                            <span class="comment-list-time">{{ comment.timestamp }}</span>
+                            <button class="comment-list-reply">回复&nbsp;|&nbsp;👍 点赞</button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+        {% endif %}
+
+    </div>
+
+
+
+
+{% endblock %}
+
+
+
+{% block bodytwo %}
+
+<div hidden="hidden" class="post_id" >{{ post.id }}</div>
+
+{% endblock %}
+
+
+
+
+{% block script %}
+
+    <script>
+
+    {#var a = $(".comment-input-body");#}
+    {#var post_id = $(".post_id").text();#}
+    {#var value = $("textarea .text-input").var().trim();#}
+
+    function commentForm() {
+
+        var data = $(".text-input").val();
+        $.ajax({
+            type:"POST",
+            url : "{{ url_for("main.comment_ajax",post_id=post.id) }}",
+            data : JSON.stringify({"comment":data}),
+            contentType: "application/json; charset=UTF-8",
+            success : function (data) {
+              alert("评论成功");
+              $(".comment-list").before(data);
+
+            }
+
+        });
+    }
+
+
+
+
+
+
+
+
+    </script>
+
+
+{% endblock %}

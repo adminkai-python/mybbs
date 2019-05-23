@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block body %}
+            <div class="question-list">
+
+                <div class="index-title">
+                    <h2>人生苦短，我用python</h2>
+                    <p>
+                        优美胜于丑陋 &nbsp; &nbsp;
+                        显式胜于隐式 &nbsp;&nbsp;
+                        简单胜于复杂 &nbsp;&nbsp;
+                        复杂胜于难懂 &nbsp;&nbsp;
+                        扁平胜于嵌套 &nbsp;&nbsp;
+                        稀疏胜于紧密 &nbsp;&nbsp;
+                        可读性应当被重视 &nbsp;&nbsp;
+                        尽管实用性会打败纯粹性，特例也不能凌驾于规则之上 &nbsp;&nbsp;
+                        不要忽略任何错误，除非你确认要这么做 &nbsp;&nbsp;
+                        面对不明确的定义，拒绝猜测的诱惑 &nbsp;&nbsp;
+                        虽然一开始这种方法并不是显而易见，因为你并不是Python之父 &nbsp;&nbsp;
+                        做好胜过不做，但没有思考的做还不如不做 &nbsp;&nbsp;
+                        如果实现很难说明，那它是个坏想法 &nbsp;&nbsp;
+                        如果实现容易解释，那它有可能是个好想法 &nbsp;&nbsp;
+                        命名空间是个绝妙的想法，请多加利用
+                    </p>
+                </div>
+
+                {% if posts %}
+
+                    {% for post in posts %}
+                        <div class="question">
+                            <div class="question-left">
+                                <div class="question-image"><img src="{{ url_for("user.get_file",filename=post.user.portrait) }}"></div>
+                                <div class="question-body">
+                                    <div class="question-body-title"><a href="{{ url_for("main.post",post_id=post.id) }}">{{ post.title }}</a></div>
+                                    <div class="question-body-add">
+                                        <small><a href="#">分类</a></small>
+                                        <small><a href="#">标签</a></small>
+                                        <small><a href="#">{{ moment(post.timestamp).fromNow(refresh=True) }}</a></small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="question-right">
+                                <div class="question-kong"></div>
+                                <div class="question-reply-number">23</div>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                {% endif %}
+
+
+            </div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

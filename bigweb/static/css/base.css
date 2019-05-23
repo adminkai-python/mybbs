@@ -1,0 +1,49 @@
+
+/*body{background:#e2e2e2;}*/
+.container-fluid{padding-left: 0px; padding-right: 0px;}
+.navbar{border: none;background:none;}
+.navbar a{font-weight: bold;}
+.main{width:100%;display: flex;flex-direction: row;}
+.main-left{width: 10%;}
+.main-main{background: white;width: 700px;}
+.main-two{margin-top:10px;background:#f2f2f5;}
+.main-betwen{width: 60%;}
+.main-right{width: 10%;}
+.question{width:100%; height: 70px; border-bottom: 1px solid silver;display: flex;flex-direction: row;justify-content: space-between;align-items: center;}
+.question-left{width:90%;display: flex;flex-direction: row;justify-content: flex-start;align-items: center;}
+.question-right{width: 10%;display: flex;flex-direction: row;justify-content: space-around;align-items: center;}
+.question-body{margin-left: 10px;height:45px; display: flex;flex-direction: column;justify-content:space-between;align-items: flex-start;}
+.question-image{margin-left: 10px;}
+.index-title{border-bottom: 1px solid silver;display: flex;flex-direction: column;align-items: center;}
+p{text-indent: 2em;margin-left: 10px;margin-right:10px;}
+.question-body-title{font-size: larger;color: #778087;width: 100%;}
+.main-betwen{display: flex;flex-direction: column;}
+
+/******************注册页面开始*********************/
+.register,.login{width:100%;display: flex;flex-direction: column;justify-content: space-around;align-items: center;margin: 15px 0 15px 0;}
+.register-input,.login-input{width: 50%;}
+.login h3{margin-bottom: 20px;}
+.login-add{display: flex;flex-direction: row;align-items: center;}
+
+
+
+/**********************文章发布页面******************/
+.post-edit{display: flex;flex-direction: column;align-items: center;}
+.title-edit{margin-top: 15px;width: 70%}
+.article-edit{margin-top: 15px;}
+.post-edit .btn{margin-top: 10px;width: 50%;margin-bottom: 10px;}
+
+
+
+
+/*******************个人设置页面************************/
+.self-main{display: flex;flex-direction: row;}
+.self-left{width: 30%;margin:10px 0 10px 10px;border-right: 1px solid silver;}
+.self-body{width: 70%;margin: 10px 10px 10px 30PX;}
+.self-list button{border: none;}
+
+
+
+
+
+

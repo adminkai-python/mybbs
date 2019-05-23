@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% from "macros.html" import field_form %}
+
+{% block head %}
+
+{% endblock %}
+
+
+{% block body %}
+
+    <div class="self-main">
+
+        <div class="self-left">
+
+            <div class="list-group self-list">
+              <button type="button" class="list-group-item">基础设置</button>
+              <button type="button" class="list-group-item">个人资料</button>
+              <button type="button" class="list-group-item">账户安全</button>
+              <button type="button" class="list-group-item">收藏</button>
+              <button type="button" class="list-group-item">关注</button>
+            </div>
+
+        </div>
+        <div class="self-body">
+
+            <div class="self-basic">
+
+                <form method="post" enctype="multipart/form-data" class="basic-form">
+                    <div class="self-portrait">
+                        <img src="{{ url_for("user.get_file",filename=current_user.portrait) }}" alt="头像">
+                        {{ portrait_form.csrf_token }}
+                        {{ field_form(portrait_form.portrait,class="set-portrait") }}
+                        <button type="submit" class="portrait-btn">确定</button>
+                    </div>
+                    <hr>
+                    <div class="self-username">
+                        <span>昵称</span>
+                        <input type="email" class="form-control" id="exampleInputEmail3">
+                    </div>
+                    <hr>
+                    <div class="self-email">
+                        <span>电子邮件</span>
+                        <button type="button">绑定邮箱</button>
+                    </div>
+                    <hr>
+                    <div class="self-phone">
+                        <span>手机号</span>
+                        <button type="button">绑定手机</button>
+                    </div>
+                    <hr>
+                    <div class="self-call">
+                        <span>是否接收系统提醒</span>
+                        <input type="radio">是
+                        <input type="radio">否
+                    </div>
+                    <hr>
+
+                </form>
+
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+{% endblock %}
+
+
+
+{% block script %}
+
+{% endblock %}
